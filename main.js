@@ -39,3 +39,36 @@ for (let m = 0; m < total.length; m++) {
     console.log(total[m]);
   }
 }
+
+//lesson-3
+
+function palidrome(str) {
+  for (let i = 0, j = str.length - 1; i < j; i++, j--) {
+       if(str[i] != str[j])
+         return false;
+  }
+  return true;
+}
+console.log(palidrome('шалаш'));
+
+const min = (a, b) => {
+  if (a < b) {
+    return a;
+  } else {
+    return b;
+  }
+}
+console.log(min(133, 10));
+
+const max = (a, y) => {
+  if (a > y) {
+    return a;
+  } else {
+    return y;
+  }
+}
+console.log(max(-6, 0));
+
+let set = [10, 5, 20, 13, 40, 55, 67, 80, 99, 100];
+let Zero = (number) => String(number).replaceAll('0', 'zero');
+console.log(Zero(set)); 
