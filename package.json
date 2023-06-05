@@ -22,11 +22,5 @@
     "eslint": "^8.41.0",
     "husky": "^8.0.3",
     "prettier": "2.8.8"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "YOUR_COMMAND_HERE",
-      "pre-push": "YOUR_COMMAND_HERE"
-    }
   }
 }
