@@ -8,7 +8,7 @@ user = student;
 console.log(user); //Natali
 
 let test = 1;
-test +=1;
+test += 1;
 test = test + '1';
 console.log(test); // 21
 
@@ -44,8 +44,8 @@ for (let m = 0; m < total.length; m++) {
 
 function palidrome(str) {
   for (let i = 0, j = str.length - 1; i < j; i++, j--) {
-       if(str[i] != str[j])
-         return false;
+    if (str[i] != str[j])
+      return false;
   }
   return true;
 }
@@ -71,4 +71,27 @@ console.log(max(-6, 0));
 
 let set = [10, 5, 20, 13, 40, 55, 67, 80, 99, 100];
 let Zero = (number) => String(number).replaceAll('0', 'zero');
-console.log(Zero(set)); 
+console.log(Zero(set));
+
+//lesson-4
+
+function sum(a) {
+  let sum1 = a;
+  function count(b) {
+    return sum1 += b;
+  }
+  return count;
+}
+console.log(sum(5)(2));
+
+
+const colors = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
+const paragraphs = document.querySelectorAll('p'); 
+
+paragraphs.forEach((p) => {
+  let count = 0;
+  p.addEventListener('click', () => {
+    p.style.color = colors[count % colors.length];
+    count++;
+  });
+})
