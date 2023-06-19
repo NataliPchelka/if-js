@@ -95,3 +95,72 @@ paragraphs.forEach((p) => {
     count++;
   });
 })
+
+//lesson-5
+
+const date = '2023-1-25';
+function replacer(match, p1, p2, p3, p4, p5) {
+  return [p5, p3, p1].join('.');
+}
+
+const newDate = date.replace(/(\d{1,})(\D)(\d+)(\D)(\d+)/, replacer);
+console.log(newDate);
+
+
+const data = [
+  {
+    country: 'Russia',
+    city: 'Saint Petersburg',
+    hotel: 'Hotel Leopold',
+  },
+  {
+    country: 'Spain',
+    city: 'Santa Cruz de Tenerife',
+    hotel: 'Apartment Sunshine',
+  },
+  {
+    country: 'Slowakia',
+    city: 'Vysokie Tatry',
+    hotel: 'Villa Kunerad',
+  },
+  {
+    country: 'Germany',
+    city: 'Berlin',
+    hotel: 'Hostel Friendship',
+  },
+  {
+    country: 'Indonesia',
+    city: 'Bali',
+    hotel: 'Ubud Bali Resort&SPA',
+  },
+  {
+    country: 'Netherlands',
+    city: 'Rotterdam',
+    hotel: 'King Kong Hostel',
+  },
+  {
+    country: 'Marocco',
+    city: 'Ourika',
+    hotel: 'Rokoko Hotel',
+  },
+  {
+    country: 'Germany',
+    city: 'Berlin',
+    hotel: 'Hotel Rehberge Berlin Mitte',
+  },
+];
+
+function search(query) {
+  const results = [];
+
+  data.forEach((item) => {
+    const { country, city, hotel } = item;
+    const searchString = `${country} ${city} ${hotel}`.toLowerCase();
+    if (searchString.includes(query.toLowerCase())) {
+      results.push(`${country}, ${city}, ${hotel}`);
+    }
+  });
+
+  return results;
+}
+console.log(search('Indonesia'));
