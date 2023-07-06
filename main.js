@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 let user = 'John Doe';
 console.log(user);
 
@@ -360,3 +361,66 @@ function groupCountry(hotels) {
 }
 
 console.log(groupCountry(hotels));
+
+
+//lesson-7
+
+const obj1 = {
+  a: 'a',
+  b: {
+    a: 'a',
+    b: 'b',
+    c: {
+      a: 1,
+    },
+  },
+};
+const obj2 = {
+  b: {
+    c: {
+      a: 1,
+    },
+    b: 'b',
+    a: 'a',
+  },
+  a: 'a',
+};
+const obj3 = {
+  a: {
+    c: {
+      a: 'a',
+    },
+    b: 'b',
+    a: 'a',
+  },
+  b: 'b',
+};
+
+const deepEqual =(object1, object2) => {
+  if (typeof object1 === 'object' && typeof object2 === 'object') {
+    const keys1 = Object.keys(object1);
+    const keys2 = Object.keys(object2);
+    if (keys1.length !== keys2.length) {
+      return false;
+    }
+    for (let key of keys1) {
+      if (!object2.hasOwnProperty(key)) {
+        return false;
+      }
+      if (typeof object1[key] === 'object' && typeof object2[key] === 'object'){
+        if (!deepEqual(object1[key], object2[key])) {
+          return false;
+        }
+      } else {
+        if (object1[key] !== object2[key]) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+  return false;
+}
+
+console.log(deepEqual(obj1, obj2)); 
+console.log(deepEqual(obj1, obj3));
