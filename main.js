@@ -36,7 +36,7 @@ for (let a = 0; a < arr.length; a++) {
 
 let total = [2, 5, 8, 15, 0, 6, 20, 3];
 for (let m = 0; m < total.length; m++) {
-  if ((total[m] % 2) === 0) {
+  if (total[m] % 2 === 0) {
     console.log(total[m]);
   }
 }
@@ -45,8 +45,7 @@ for (let m = 0; m < total.length; m++) {
 
 function palidrome(str) {
   for (let i = 0, j = str.length - 1; i < j; i++, j--) {
-    if (str[i] != str[j])
-      return false;
+    if (str[i] != str[j]) return false;
   }
   return true;
 }
@@ -58,7 +57,7 @@ const min = (a, b) => {
   } else {
     return b;
   }
-}
+};
 console.log(min(133, 10));
 
 const max = (a, y) => {
@@ -67,7 +66,7 @@ const max = (a, y) => {
   } else {
     return y;
   }
-}
+};
 console.log(max(-6, 0));
 
 let set = [10, 5, 20, 13, 40, 55, 67, 80, 99, 100];
@@ -79,15 +78,14 @@ console.log(Zero(set));
 function sum(a) {
   let sum1 = a;
   function count(b) {
-    return sum1 += b;
+    return (sum1 += b);
   }
   return count;
 }
 console.log(sum(5)(2));
 
-
 const colors = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
-const paragraphs = document.querySelectorAll('p'); 
+const paragraphs = document.querySelectorAll('p');
 
 paragraphs.forEach((p) => {
   let count = 0;
@@ -95,7 +93,7 @@ paragraphs.forEach((p) => {
     p.style.color = colors[count % colors.length];
     count++;
   });
-})
+});
 
 //lesson-5
 
@@ -106,7 +104,6 @@ function replacer(match, p1, p2, p3, p4, p5) {
 
 const newDate = date.replace(/(\d{1,})(\D)(\d+)(\D)(\d+)/, replacer);
 console.log(newDate);
-
 
 const data = [
   {
@@ -168,10 +165,10 @@ console.log(search('Indonesia'));
 
 //lesson-6
 
-const palidromeSecond = (str) => (str == str.split('').reverse().join('')) ? true : false;
+const palidromeSecond = (str) =>
+  str == str.split('').reverse().join('') ? true : false;
 
-console.log(palidromeSecond('шалаш'))
-
+console.log(palidromeSecond('шалаш'));
 
 const hotels = [
   {
@@ -362,7 +359,6 @@ function groupCountry(hotels) {
 
 console.log(groupCountry(hotels));
 
-
 //lesson-7
 
 const obj1 = {
@@ -396,7 +392,7 @@ const obj3 = {
   b: 'b',
 };
 
-const deepEqual =(object1, object2) => {
+const deepEqual = (object1, object2) => {
   if (typeof object1 === 'object' && typeof object2 === 'object') {
     const keys1 = Object.keys(object1);
     const keys2 = Object.keys(object2);
@@ -407,7 +403,10 @@ const deepEqual =(object1, object2) => {
       if (!object2.hasOwnProperty(key)) {
         return false;
       }
-      if (typeof object1[key] === 'object' && typeof object2[key] === 'object'){
+      if (
+        typeof object1[key] === 'object' &&
+        typeof object2[key] === 'object'
+      ) {
         if (!deepEqual(object1[key], object2[key])) {
           return false;
         }
@@ -420,7 +419,76 @@ const deepEqual =(object1, object2) => {
     return true;
   }
   return false;
+};
+
+console.log(deepEqual(obj1, obj2));
+console.log(deepEqual(obj1, obj3));
+
+//lesson-8
+
+class User {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+  get fullName() {
+    return this.firstName + this.lastName;
+  }
 }
 
-console.log(deepEqual(obj1, obj2)); 
-console.log(deepEqual(obj1, obj3));
+class Student extends User {
+  constructor({ admissionYear, courseName, ...props }) {
+    super(props);
+    this.admissionYear = admissionYear;
+    this.courseName = courseName;
+  }
+  get course() {
+    return new Date().getFullYear() - this.students.admissionYear;
+  }
+}
+
+const studentsData = [
+  {
+    firstName: 'Василий',
+    lastName: 'Петров',
+    admissionYear: 2019,
+    courseName: 'Java',
+  },
+  {
+    firstName: 'Иван',
+    lastName: 'Иванов',
+    admissionYear: 2018,
+    courseName: 'JavaScript',
+  },
+  {
+    firstName: 'Александр',
+    lastName: 'Федоров',
+    admissionYear: 2017,
+    courseName: 'Python',
+  },
+  {
+    firstName: 'Николай',
+    lastName: 'Петров',
+    admissionYear: 2019,
+    courseName: 'Android',
+  },
+];
+
+class Students extends Student {
+  constructor({ ...props }) {
+    super(props);
+  }
+  getInfo() {
+    const sortedStudents = studentsData.sort((a, b) =>
+      a.courseName.localeCompare(b.courseName),
+    );
+    sortedStudents.forEach((student) => {
+      const fullName = `${student.firstName} ${student.lastName}`;
+      const course = new Date().getFullYear() - student.admissionYear;
+      console.log(`${fullName} - ${student.courseName}, ${course} курс`);
+    });
+  }
+}
+
+const students = new Students(studentsData);
+console.log(students.getInfo());
